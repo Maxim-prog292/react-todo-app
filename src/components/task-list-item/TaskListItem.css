@@ -1,0 +1,20 @@
+.task-list-item {
+    height: 45px;
+    align-items: center;
+}
+.task-list-item .task-label {
+    font-size: 1rem;
+}
+.icon-group {
+    width: 40px;
+    justify-content: space-between;
+}
+.icon {
+    cursor: pointer;
+}
+.important .star   {
+    color: #ffc107;
+}
+.done .check  {
+    color: #198754;
+}
