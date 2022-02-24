@@ -10,10 +10,10 @@ export default class TaskList extends React.Component {
     }
     render() {
         const tasks = this.props.tasks;
-        const elements = tasks.map(({task, id, warning, done}) => {
+        const elements = tasks.map(({ task, id, warning, done }) => {
             return (
                 <li className='list-group-item' key={id}>
-                    <TaskListItem task={task} warning={warning} done={done}/>
+                    <TaskListItem task={task} warning={warning} done={done} deleted={() => this.props.onDeleted(id)}/>
                 </li>
             )
         })

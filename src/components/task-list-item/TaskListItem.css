@@ -6,7 +6,7 @@
     font-size: 1rem;
 }
 .icon-group {
-    width: 40px;
+    width: 60px;
     justify-content: space-between;
 }
 .icon {
@@ -17,4 +17,7 @@
 }
 .done .check  {
     color: #198754;
+}
+.trash:hover {
+    color: #dc3545;
 }

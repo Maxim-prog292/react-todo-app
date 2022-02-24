@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faCheck, faTrash } from '@fortawesome/free-solid-svg-icons';
 import './TaskListItem.css'
 
 export default class TaskListItem extends React.Component {
@@ -41,10 +41,16 @@ export default class TaskListItem extends React.Component {
                     className='star ' 
                     icon={faStar} 
                     onClick={this.isImportant}/></span>
+
                     <span><FontAwesomeIcon 
                     className='check ' 
                     icon={faCheck} 
                     onClick={this.isDone}/></span>
+
+                    <span><FontAwesomeIcon 
+                    className='trash ' 
+                    icon={faTrash} 
+                    onClick={(this.props.deleted)}/></span>
                 </div>
                
             </div>
