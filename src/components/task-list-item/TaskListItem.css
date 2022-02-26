@@ -9,7 +9,7 @@
     width: 60px;
     justify-content: space-between;
 }
-.icon {
+.icon-group .icon {
     cursor: pointer;
 }
 .important .star   {

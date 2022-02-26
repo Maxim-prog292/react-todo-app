@@ -37,9 +37,14 @@ export default class App extends React.Component {
 				warning: false,
 				done: false
 			},
-		]};
+		],
+			filter: 'all'
+		};
 		this.deleted = this.deleted.bind(this);
 		this.addTask = this.addTask.bind(this);
+		this.onFilterTasks = this.onFilterTasks.bind(this);
+		this.onWarning = this.onWarning.bind(this);
+		this.onDone = this.onDone.bind(this);
 	}
 	deleted(id){
 		this.setState(({taskArray}) => {
@@ -67,16 +72,66 @@ export default class App extends React.Component {
 			)
 		})
 	}
+	filterTask(items, filter) {
+		if (filter === 'done') {
+			return items.filter(item => item.done)
+		} else if (filter === 'warning') {
+			return items.filter(item => item.warning)
+		} else {
+			return items
+		}
+	}
+	onFilterTasks(filter) {
+		this.setState({filter: filter})
+	}
+	onWarning(id) {
+		console.log(id)
+        this.setState(({taskArray}) => {
+            const index = taskArray.findIndex(item => item.id === id);
+			console.log(index)
+			const oldItem = taskArray[index];
+			console.log(oldItem)
+			const newItem = {...oldItem, warning: !oldItem.warning};
+
+			const array = [...taskArray.slice(0, index), newItem, ...taskArray.slice(index + 1)];
+			return (
+				{taskArray: array}
+			)
+			
+        })
+    }
+    onDone(id) {
+        this.setState(({taskArray}) => {
+            const index = taskArray.findIndex(item => item.id === id);
+			console.log(index)
+			const oldItem = taskArray[index];
+			console.log(oldItem)
+			const newItem = {...oldItem, done: !oldItem.done};
+
+			const array = [...taskArray.slice(0, index), newItem, ...taskArray.slice(index + 1)];
+			return (
+				{taskArray: array}
+			)
+			
+        })
+    }
 	render() {
+		const {taskArray, filter} = this.state;
+		const newTaskArray = this.filterTask(taskArray, filter)
 		return (
 			<div
 				className='appBlock'
 			>
-				<FilterPanel />
+				<FilterPanel
+					filter={filter}
+					filterTask={this.onFilterTasks}
+				/>
 				
 				<TaskList 
-				tasks={this.state.taskArray} 
-				onDeleted={this.deleted} />
+				tasks={newTaskArray} 
+				onDeleted={this.deleted}
+				onDone={this.onDone}
+				onWarning={this.onWarning} />
 
 				<AddTask 
 				onAddTask={this.addTask}/>

@@ -6,12 +6,37 @@ export default class AddTask extends React.Component {
 	constructor(props){
         super(props);
         this.props = props;
+		this.state = {
+			value: ''
+		}
+		this.inputTask = this.inputTask.bind(this);
+		this.onAddTask = this.onAddTask.bind(this);
     }
+	onAddTask(e) {
+		e.preventDefault()
+		this.props.onAddTask(this.state.value)
+		this.setState({
+			value: ''
+		})
+	}
+	inputTask(e) {
+		let value = e.target.value;
+		this.setState({
+			value: value
+		})
+	}
 	render() {
 		return (
-			<form className='d-flex'>
-				<Input  placeholder='Введите задачу'></Input>
-				<Button outline onClick={() => this.props.onAddTask('Выйти на улицу')}>Добавить</Button>
+			<form 
+			className='d-flex' 
+			onSubmit={this.onAddTask}>
+				<Input 
+				placeholder='Введите задачу' 
+				onChange={this.inputTask}
+				value={this.state.value}></Input>
+				<Button 
+				outline 
+				>Добавить</Button>
 			</form>
 		)
 	}

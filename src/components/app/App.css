@@ -1,7 +1,6 @@
 .appBlock {
     width: 550px;
     height: 600px;
-
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
